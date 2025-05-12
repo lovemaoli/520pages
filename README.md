@@ -1,44 +1,32 @@
-Explanation of the Code:
+# 💖 给线的520惊喜页面 💖
 
-HTML (index.html):
-Sets up the basic page structure.
-Includes a div with class background-shapes for the dynamic animated shapes that contribute to the "dynamic" frosted glass effect.
-A div with class container to hold the main content.
-A div with id frosted-glass which will have the frosted glass effect applied to it and will contain the countdown and button.
-Elements for the countdown timer (#countdown).
-The "Subscribe" button (#subscribeBtn) and a message area (#subscribeMsg).
-CSS (style.css):
-Background:
-body has a base pink gradient.
-.background-shapes div: Creates several divs that are animated (pulsating and moving) to give a dynamic feel to the background. These will be blurred by the backdrop-filter on the content.
-Frosted Glass Effect:
-.frosted-glass: This is the key.
-background: rgba(255, 255, 255, 0.1);: A very light, semi-transparent white background for the glass effect. Adjust alpha (0.1) for more or less transparency.
-backdrop-filter: blur(10px);: This is what creates the blurriness of the content behind it (the animated shapes).
-box-shadow and border-radius for a softer look.
-Countdown Timer & Button:
-Basic styling for the timer text and the button.
-#subscribeMsg is initially hidden.
-Random Text Pop-ups:
-.popup-text: Styles the floating text (color, shadow, animation).
-fadeOutUp: A CSS animation to make the text fade and move up.
-JavaScript (script.js):
-Countdown Timer:
-Sets the targetDate.
-setInterval updates the countdown every second.
-Calculates days, hours, minutes, and seconds remaining.
-Displays the time or a "Happy 520!" message if the date has passed.
-Subscription Button:
-Adds an event listener to the button.
-On click, it changes the button text to "Subscribed!" and displays the success message. It also disables the button to prevent multiple "subscriptions."
-Important: This is a front-end simulation. No actual email subscription or backend processing is happening.
-Random Text Pop-ups:
-popWords: An array of your desired phrases.
-Adds an event listener to the document.
-On click:
-Creates a new div for the popup text.
-Randomly selects a word from popWords.
-Sets the text and styles it.
-Positions the text near the mouse click.
-Appends it to the body.
-Uses setTimeout to remove the popup after a short duration to create the disappearing effect.
+这是一个特别为 **线** 制作的520惊喜网页！
+
+## ✨ 主要功能
+
+* **浪漫背景**: 动态的粉色背景，带有毛玻璃效果的卡片。
+* **特别倒计时**: 显示距离我们特别的日子 `2026年3月6日 23:36` 还有多久。
+* **幸福订阅**: 一个可爱的订阅按钮，点击后会显示“订阅成功”的提示（这是一个前端模拟功能，不会真的发送邮件哦~）。
+* **惊喜彩蛋**: 在页面任意位置（除按钮外）点击，会随机弹出一些我们之间的小昵称和爱称，比如“线线傻瓜”、“小可爱”等等！
+* **Emoji漂浮**: 打开页面时，会有礼物 🎁、气球 🎈、爱心 ❤️ 等Emoji在屏幕上轻轻漂浮。
+
+## 🚀 如何查看
+
+这是一个静态网页，已配置通过 GitHub Pages 查看。
+
+1.  确保你的仓库已经在 GitHub Pages 设置中启用了。
+    * 前往仓库的 "Settings" -> "Pages"。
+    * 选择 `main` (或 `master`) 分支，并从 `/(root)` 目录部署。
+2.  部署成功后，你就可以通过类似 `your-username.github.io/your-repository-name/` 的链接访问啦！
+
+## 🔧 技术栈
+
+* HTML
+* CSS
+* JavaScript
+
+---
+
+Love u
+
+maoli
