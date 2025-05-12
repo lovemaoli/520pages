@@ -1,0 +1,209 @@
+html {
+    height: 100%; /* Added for mobile background stability */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    height: 100%; /* Ensure body also takes full height */
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    overflow-x: hidden; /* Changed from overflow: hidden; to prevent horizontal scroll only */
+    color: #333;
+    position: relative;
+}
+
+/* --- Floating Emojis --- */
+#emoji-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2; /* Above background shapes, below main content */
+    overflow: hidden;
+}
+
+.floating-emoji {
+    position: absolute;
+    font-size: 2rem;
+    user-select: none;
+    animation: floatUpwards 10s linear infinite;
+    opacity: 0;
+}
+
+@keyframes floatUpwards {
+    0% {
+        transform: translateY(100vh) translateX(0vw) rotate(0deg);
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-100px) translateX(var(--translateX-end)) rotate(var(--rotate-end));
+        opacity: 0;
+    }
+}
+
+
+/* --- Background Shapes (for frosted glass effect) --- */
+.background-shapes { /* Added a container for z-index control if needed */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Keep shapes contained */
+    z-index: 1; /* Above body gradient, below emoji-container */
+}
+
+.background-shapes div {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: float 20s infinite ease-in-out;
+}
+
+.background-shapes div:nth-child(1) {
+    width: 80px; height: 80px; top: 10%; left: 15%; animation-duration: 15s;
+}
+.background-shapes div:nth-child(2) {
+    width: 120px; height: 120px; top: 20%; left: 70%; animation-duration: 22s;
+}
+.background-shapes div:nth-child(3) {
+    width: 60px; height: 60px; top: 60%; left: 10%; animation-duration: 18s;
+}
+.background-shapes div:nth-child(4) {
+    width: 150px; height: 150px; top: 70%; left: 80%; animation-duration: 25s; opacity: 0.2;
+}
+.background-shapes div:nth-child(5) {
+    width: 100px; height: 100px; top: 40%; left: 40%; animation-duration: 20s;
+}
+.background-shapes div:nth-child(6) {
+    width: 70px; height: 70px; top: 85%; left: 30%; animation-duration: 16s; opacity: 0.25;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.2; }
+    25% { transform: translateY(-30px) translateX(20px) scale(1.1); opacity: 0.3; }
+    50% { transform: translateY(20px) translateX(-30px) scale(0.9); opacity: 0.4; }
+    75% { transform: translateY(-10px) translateX(10px) scale(1.05); opacity: 0.3;}
+}
+
+/* --- Main Content --- */
+.container {
+    text-align: center;
+    z-index: 3; /* Above emoji container and background shapes */
+    padding: 20px;
+    position: relative; /* Ensure it establishes a stacking context if needed */
+}
+
+#frosted-glass {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(211, 128, 150, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+h1 {
+    color: #d6336c;
+    margin-bottom: 25px;
+    font-size: 2.5em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+#countdown-container p {
+    font-size: 1.1em;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+#countdown {
+    font-size: 2em;
+    font-weight: bold;
+    color: #c2255c;
+    margin-bottom: 30px;
+    background-color: rgba(255,255,255,0.2);
+    padding: 10px 15px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+#countdown span {
+    padding: 0 5px;
+}
+
+#subscribeBtn {
+    background-color: #ff87ab;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative; /* Ensure button is targetable by e.target.closest */
+    z-index: 5; /* Above its parent's backdrop if needed */
+}
+
+#subscribeBtn:hover {
+    background-color: #f36893;
+    transform: translateY(-2px);
+}
+
+#subscribeBtn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: translateY(0);
+}
+
+#subscribeMsg {
+    margin-top: 20px;
+    font-size: 1.1em;
+    color: #ff69b4; /* Hot Pink */
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+/* --- Click Pop-up Text --- */
+.popup-text {
+    position: fixed;
+    padding: 8px 15px;
+    background-color: rgba(255, 105, 180, 0.85);
+    color: white;
+    border-radius: 20px;
+    font-size: 1.3em;
+    font-weight: bold;
+    user-select: none;
+    pointer-events: none;
+    animation: fadeOutUpClick 1.5s forwards;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    z-index: 1000; /* Highest z-index */
+}
+
+@keyframes fadeOutUpClick {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(0.8);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-80px) scale(1.2);
+    }
+}
